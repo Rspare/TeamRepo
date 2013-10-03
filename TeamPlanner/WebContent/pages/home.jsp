@@ -18,7 +18,7 @@ Employee Type<input type=text name="empType"/>
 Skill Set id<input type=text name="empSkillSet"/>
 Department id<input type=text name="deptId"/>
 Designation id<input type=text name="desigId"/>
-<input type="submit" value="Submit">
+<input type="submit" value="Submit Data">
 </form>
 
 </body>
