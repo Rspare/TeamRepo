@@ -1,67 +1,67 @@
--- Schema Creation
+-- SCHEMA CREATION
 CREATE SCHEMA `teamplanner` ;
 
--- Projects Table Creation
+-- PROJECTS TABLE CREATION
 CREATE  TABLE `teamplanner`.`projects` (
   `prj_id` INT(10) NOT NULL ,
-  `name` VARCHAR(50) NOT NULL ,
-  `description` VARCHAR(100) NOT NULL ,
+  `prj_name` VARCHAR(50) NOT NULL ,
+  `prj_desc` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`prj_id`) );
 
--- Holidays Table Creation
+-- HOLIDAYS TABLE CREATION
 CREATE  TABLE `teamplanner`.`holidays` (
   `holiday_date` DATE NOT NULL ,
-  `name` VARCHAR(50) NOT NULL ,
+  `holiday_name` VARCHAR(50) NOT NULL ,
   `comments` VARCHAR(50),
   PRIMARY KEY (`holiday_date`) );
 
--- Timesheet Table Creation
+-- TIMESHEET TABLE CREATION
 CREATE  TABLE `teamplanner`.`timesheet` (
   `emp_id` INT(10) NOT NULL ,
   `date` DATE NOT NULL ,
   `hours` INT(10),
-  `project_id` INT(10) NOT NULL ,
+  `prj_id` INT(10) NOT NULL ,
   `comments` VARCHAR(50),
-  PRIMARY KEY (`emp_id`, `date`, `project_id`) );
+  PRIMARY KEY (`emp_id`, `date`, `prj_id`) );
 
--- Department Table Creation
+-- DEPARTMENT TABLE CREATION
 CREATE TABLE `department` (
-  `deptId` INT(10) NOT NULL,
-  `deptName` varchar(50) DEFAULT NULL,
-  `vpId` INT(10) DEFAULT NULL,
-  PRIMARY KEY (`deptId`),
-  KEY `vp_id` (`vpId`) ) ;
+  `dept_id` INT(10) NOT NULL,
+  `dept_name` varchar(50) DEFAULT NULL,
+  `vp_id` INT(10) DEFAULT NULL,
+  PRIMARY KEY (`dept_id`),
+  KEY `vp_id` (`vp_id`) ) ;
 
--- Designation Table Creation
+-- DESIGNATION TABLE CREATION
 CREATE TABLE `designation` (
   `desig_id` INT(10) NOT NULL,
   `hie_id` INT(10) NOT NULL,
   `desig_name` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`desig_id`) );
 
--- Hierarchy Table Creation
+-- HIERARCHY TABLE CREATION
 CREATE TABLE `hierarchy` (
   `hie_id` INT(10) NOT NULL,
   `hie_name` VARCHAR(50) DEFAULT NULL,
   `hie_desc` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`hie_id`) );
 
--- Employee Table Creation
+-- EMPLOYEE TABLE CREATION
 CREATE TABLE `employee` (
-  `empId` INT(10) NOT NULL AUTO_INCREMENT,
-  `empFName` VARCHAR(50) NOT NULL COMMENT 'First Name',
-  `empLName` VARCHAR(50) NOT NULL COMMENT 'Last Name',
-  `empDob` date DEFAULT NULL,
-  `empDoj` date DEFAULT NULL,
-  `empType` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent / Contract / Full Time / Part time',
-  `empSkillSet` INT(10) DEFAULT NULL COMMENT 'Set of skills foreign key from skills table.',
-  `deptId` VARCHAR(50) DEFAULT NULL COMMENT 'Department Id Foreign Key',
-  `desigId` INT(10) DEFAULT NULL COMMENT 'designation id',
-  PRIMARY KEY (`empId`) );
+  `emp_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `emp_FName` VARCHAR(50) NOT NULL COMMENT 'First Name',
+  `emp_LName` VARCHAR(50) NOT NULL COMMENT 'Last Name',
+  `emp_Dob` date DEFAULT NULL,
+  `emp_Doj` date DEFAULT NULL,
+  `emp_Type` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent / Contract / Full Time / Part time',
+  `emp_SkillSet` INT(10) DEFAULT NULL COMMENT 'Set of skills foreign key from skills table.',
+  `dept_id` VARCHAR(50) DEFAULT NULL COMMENT 'Department Id Foreign Key',
+  `desig_id` INT(10) DEFAULT NULL COMMENT 'designation id',
+  PRIMARY KEY (`emp_id`) );
 
--- Employee_Details Table Creation
+-- EMPLOYEE_DETAILS TABLE CREATION
 CREATE TABLE `emp_details` (
-  `empId` INT(10) NOT NULL,
+  `emp_id` INT(10) NOT NULL,
   `pan_no` VARCHAR(50) DEFAULT NULL COMMENT 'Pan Card No',
   `phone_no` VARCHAR(50) DEFAULT NULL COMMENT 'Phone no',
   `alt_ph_no` VARCHAR(50) DEFAULT NULL COMMENT 'Alternate Phone no',
@@ -83,5 +83,5 @@ CREATE TABLE `emp_details` (
   `emp_doj` date DEFAULT NULL,
   PRIMARY KEY (`empId`),
   UNIQUE KEY `pan_no_UNIQUE` (`pan_no`),
-  KEY `emp_id_idx` (`empId`),
-  CONSTRAINT `emp_id` FOREIGN KEY (`empId`) REFERENCES `employee` (`empId`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ;
+  KEY `emp_id_idx` (`emp_id`),
+  CONSTRAINT `emp_id` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ;
