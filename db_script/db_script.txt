@@ -1,0 +1,87 @@
+-- Schema Creation
+CREATE SCHEMA `teamplanner` ;
+
+-- Projects Table Creation
+CREATE  TABLE `teamplanner`.`projects` (
+  `prj_id` INT(10) NOT NULL ,
+  `name` VARCHAR(50) NOT NULL ,
+  `description` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`prj_id`) );
+
+-- Holidays Table Creation
+CREATE  TABLE `teamplanner`.`holidays` (
+  `holiday_date` DATE NOT NULL ,
+  `name` VARCHAR(50) NOT NULL ,
+  `comments` VARCHAR(50),
+  PRIMARY KEY (`holiday_date`) );
+
+-- Timesheet Table Creation
+CREATE  TABLE `teamplanner`.`timesheet` (
+  `emp_id` INT(10) NOT NULL ,
+  `date` DATE NOT NULL ,
+  `hours` INT(10),
+  `project_id` INT(10) NOT NULL ,
+  `comments` VARCHAR(50),
+  PRIMARY KEY (`emp_id`, `date`, `project_id`) );
+
+-- Department Table Creation
+CREATE TABLE `department` (
+  `deptId` INT(10) NOT NULL,
+  `deptName` varchar(50) DEFAULT NULL,
+  `vpId` INT(10) DEFAULT NULL,
+  PRIMARY KEY (`deptId`),
+  KEY `vp_id` (`vpId`) ) ;
+
+-- Designation Table Creation
+CREATE TABLE `designation` (
+  `desig_id` INT(10) NOT NULL,
+  `hie_id` INT(10) NOT NULL,
+  `desig_name` VARCHAR(50) DEFAULT NULL,
+  PRIMARY KEY (`desig_id`) );
+
+-- Hierarchy Table Creation
+CREATE TABLE `hierarchy` (
+  `hie_id` INT(10) NOT NULL,
+  `hie_name` VARCHAR(50) DEFAULT NULL,
+  `hie_desc` VARCHAR(50) DEFAULT NULL,
+  PRIMARY KEY (`hie_id`) );
+
+-- Employee Table Creation
+CREATE TABLE `employee` (
+  `empId` INT(10) NOT NULL AUTO_INCREMENT,
+  `empFName` VARCHAR(50) NOT NULL COMMENT 'First Name',
+  `empLName` VARCHAR(50) NOT NULL COMMENT 'Last Name',
+  `empDob` date DEFAULT NULL,
+  `empDoj` date DEFAULT NULL,
+  `empType` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent / Contract / Full Time / Part time',
+  `empSkillSet` INT(10) DEFAULT NULL COMMENT 'Set of skills foreign key from skills table.',
+  `deptId` VARCHAR(50) DEFAULT NULL COMMENT 'Department Id Foreign Key',
+  `desigId` INT(10) DEFAULT NULL COMMENT 'designation id',
+  PRIMARY KEY (`empId`) );
+
+-- Employee_Details Table Creation
+CREATE TABLE `emp_details` (
+  `empId` INT(10) NOT NULL,
+  `pan_no` VARCHAR(50) DEFAULT NULL COMMENT 'Pan Card No',
+  `phone_no` VARCHAR(50) DEFAULT NULL COMMENT 'Phone no',
+  `alt_ph_no` VARCHAR(50) DEFAULT NULL COMMENT 'Alternate Phone no',
+  `emr_ph_no` VARCHAR(50) DEFAULT NULL COMMENT 'Emergency Phone no',
+  `blood_gp` VARCHAR(50) DEFAULT NULL COMMENT 'Blood Group',
+  `pa_ln1` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent Address Line 1',
+  `pa_ln2` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent Address Line 2',
+  `pa_city` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent Address - City',
+  `pa_state` VARCHAR(50) DEFAULT NULL,
+  `pa_country` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent Address - country',
+  `pa_pin` VARCHAR(50) DEFAULT NULL COMMENT 'Permanent Address - pin',
+  `ta_lin1` VARCHAR(50) DEFAULT NULL,
+  `ta_lin2` VARCHAR(50) DEFAULT NULL,
+  `ta_city` VARCHAR(50) DEFAULT NULL,
+  `ta_state` VARCHAR(50) DEFAULT NULL,
+  `ta_country` VARCHAR(50) DEFAULT NULL,
+  `ta_pin` VARCHAR(50) DEFAULT NULL,
+  `emp_dob` date DEFAULT NULL,
+  `emp_doj` date DEFAULT NULL,
+  PRIMARY KEY (`empId`),
+  UNIQUE KEY `pan_no_UNIQUE` (`pan_no`),
+  KEY `emp_id_idx` (`empId`),
+  CONSTRAINT `emp_id` FOREIGN KEY (`empId`) REFERENCES `employee` (`empId`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ;
