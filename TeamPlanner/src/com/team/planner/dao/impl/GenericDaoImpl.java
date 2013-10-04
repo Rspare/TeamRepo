@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
  
 
+
 import com.team.planner.dao.GenericDao;
 
 import java.io.Serializable;
@@ -57,7 +58,8 @@ public class GenericDaoImpl<E, K extends Serializable> implements GenericDao<E, 
         return (E) currentSession().get(daoType, key);
     }
  
-    @Override
+ 
+	@Override
     public List<E> list() {
         return currentSession().createCriteria(daoType).list();
     }

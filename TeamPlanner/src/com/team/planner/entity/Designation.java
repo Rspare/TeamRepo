@@ -1,10 +1,11 @@
 package com.team.planner.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Entity
 @Table(name="designation")
 public class Designation {
 	

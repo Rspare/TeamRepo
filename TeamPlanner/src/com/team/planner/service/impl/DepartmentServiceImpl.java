@@ -1,5 +1,7 @@
 package com.team.planner.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 		deptDao.add(dept);
 		
 		return 1;
+	}
+
+	@Override
+	public List<Department> getAllDepartments() {
+	
+		return deptDao.list();
 	}
 
 }

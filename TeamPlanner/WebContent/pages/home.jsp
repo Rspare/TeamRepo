@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,16 +10,21 @@
 <body>
 
 <form action="saveEmployee.do" method="post">
-Add Employees <br/>
+<table>Add Employees 
 First Name:<input type=text name="empFName"/><br/>
 Last Name:<input type=text name="empLName"/><br/>
-DOB:<input type=text name="empDob"/><br/>
-DOJ:<input type=text name="empDoj"/><br/>
-Employee Type:<input type=text name="empType"/><br/>
-Skill Set id:<input type=text name="empSkillSet"/><br/>
-Department id:<input type=text name="deptId"/><br/>
-Designation id:<input type=text name="desigId"/><br/>
-<input type="submit" value="Submit Data"><br/>
+Select Department:  <form:select path="deptLst" id="deptId" name="deptId">
+        <form:option value="">Select Dept 
+          <form:options items="${deptLst}" var="department" name="${department.deptId}" itemValue="deptId" itemLabel="deptName" value="${department.deptId}"></form:options></form:option>
+      </form:select> <br/>
+Select Designation:
+<form:select path="desigLst" id="desigId" name="desigId">
+        <form:option value="">Select Designation 
+          <form:options items="${desigLst}" var="designation" itemValue="desId" itemLabel="desName" value="${designation.desId}"></form:options></form:option>
+      </form:select> <br/>
+
+<input type="submit" value="Submit Data">
+</table>
 </form>
 
 </body>

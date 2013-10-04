@@ -18,4 +18,5 @@
  	<servlet-name>tp-dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
 </web-app>

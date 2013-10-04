@@ -8,4 +8,5 @@ import com.team.planner.entity.Employee;
 @Component("empDao")
 public class EmployeeDaoImpl extends GenericDaoImpl<Employee, Integer> implements EmployeeDao {
 
+	
 }
