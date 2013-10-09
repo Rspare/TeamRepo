@@ -25,7 +25,7 @@ CREATE  TABLE `teamplanner`.`timesheet` (
   PRIMARY KEY (`emp_id`, `date`, `prj_id`) );
 
 -- DEPARTMENT TABLE CREATION
-CREATE TABLE `department` (
+CREATE TABLE `teamplanner`.`department` (
   `dept_id` INT(10) NOT NULL,
   `dept_name` varchar(50) DEFAULT NULL,
   `vp_id` INT(10) DEFAULT NULL,
@@ -33,21 +33,21 @@ CREATE TABLE `department` (
   KEY `vp_id` (`vp_id`) ) ;
 
 -- DESIGNATION TABLE CREATION
-CREATE TABLE `designation` (
+CREATE TABLE `teamplanner`.`designation` (
   `desig_id` INT(10) NOT NULL,
   `hie_id` INT(10) NOT NULL,
   `desig_name` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`desig_id`) );
 
 -- HIERARCHY TABLE CREATION
-CREATE TABLE `hierarchy` (
+CREATE TABLE `teamplanner`.`hierarchy` (
   `hie_id` INT(10) NOT NULL,
   `hie_name` VARCHAR(50) DEFAULT NULL,
   `hie_desc` VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (`hie_id`) );
 
 -- EMPLOYEE TABLE CREATION
-CREATE TABLE `employee` (
+CREATE TABLE `teamplanner`.`employee` (
   `emp_id` INT(10) NOT NULL AUTO_INCREMENT,
   `emp_FName` VARCHAR(50) NOT NULL COMMENT 'First Name',
   `emp_LName` VARCHAR(50) NOT NULL COMMENT 'Last Name',
@@ -60,7 +60,7 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`emp_id`) );
 
 -- EMPLOYEE_DETAILS TABLE CREATION
-CREATE TABLE `emp_details` (
+CREATE TABLE `teamplanner`.`emp_details` (
   `emp_id` INT(10) NOT NULL,
   `pan_no` VARCHAR(50) DEFAULT NULL COMMENT 'Pan Card No',
   `phone_no` VARCHAR(50) DEFAULT NULL COMMENT 'Phone no',
@@ -81,7 +81,7 @@ CREATE TABLE `emp_details` (
   `ta_pin` VARCHAR(50) DEFAULT NULL,
   `emp_dob` date DEFAULT NULL,
   `emp_doj` date DEFAULT NULL,
-  PRIMARY KEY (`empId`),
+  PRIMARY KEY (`emp_id`),
   UNIQUE KEY `pan_no_UNIQUE` (`pan_no`),
   KEY `emp_id_idx` (`emp_id`),
   CONSTRAINT `emp_id` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION ) ;
